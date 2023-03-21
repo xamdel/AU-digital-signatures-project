@@ -1,31 +1,17 @@
-## ECDSA Node
+## Wallet UX Mockup
 
-This project is an example of using a client and server to facilitate transfers between different addresses. Since there is just a single server on the back-end handling transfers, this is clearly very centralized. We won't worry about distributed consensus for this project.
+This is my version of the ECDSA Node project for Alchemy University. 
 
-However, something that we would like to incoporate is Public Key Cryptography. By using Elliptic Curve Digital Signatures we can make it so the server only allows transfers that have been signed for by the person who owns the associated address.
+I focused on UX, so that users can generate new password-protected wallets at the click of a button, and easily sign transactions without any copy-pasting of strings. As a result, it's incredibly insecure, with both the client and server storing and transferring private keys in plaintext. But the goal of the project was to implement the signature and verification process, which I think works nicely.
 
-### Video instructions
-For an overview of this project as well as getting started instructions, check out the following video:
+### Login/Create Wallet
 
-https://www.loom.com/share/0d3c74890b8e44a5918c4cacb3f646c4
- 
-### Client
+The initial splash screen is a login modal, with the ability to create a new wallet. Creating a new wallet generates keys and addresses, and stores the user's password hash for login validation in the future. Users can log in to an existing wallet with their address and password, once they have been generated.
 
-The client folder contains a [react app](https://reactjs.org/) using [vite](https://vitejs.dev/). To get started, follow these steps:
+### Sending Transactions
 
-1. Open up a terminal in the `/client` folder
-2. Run `npm install` to install all the depedencies
-3. Run `npm run dev` to start the application 
-4. Now you should be able to visit the app at http://127.0.0.1:5173/
+Local state variables in the client store the logged in user's private key, so that signing transactions is effortless. I wanted to loosely emulate the ease-of-use of browser wallets like Metamask. I may revisit this project to implement secure key management, but I considered that out of scope for now.
 
-### Server
+### Address list
 
-The server folder contains a node.js server using [express](https://expressjs.com/). To run the server, follow these steps:
-
-1. Open a terminal within the `/server` folder 
-2. Run `npm install` to install all the depedencies 
-3. Run `node index` to start the server 
-
-The application should connect to the default server port (3042) automatically! 
-
-_Hint_ - Use [nodemon](https://www.npmjs.com/package/nodemon) instead of `node` to automatically restart the server on any changes.
+A major part of the UX is a component called AddressList, located beneath the Wallet and Transaction components. It displays all existing addresses and their balance, and allows users to choose an address to send a transaction to, simply by clicking on it.
