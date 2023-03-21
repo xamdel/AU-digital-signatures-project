@@ -16,10 +16,23 @@ label {
 
 .app {
   display: flex;
+  flex-direction: column;
   max-width: 1400px;
   flex-wrap: wrap;
   gap: 12px;
   margin: 0 auto;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.address-list-container {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .container {
@@ -51,17 +64,81 @@ input {
 
 .button {
   background-color: #319795;
-  border-radius: 0.125rem;
-  padding: 10px 20px;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
   color: white;
   display: inline-flex;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
   font-size: .9em;
+  transition: background-color 0.3s, transform 0.3s;
+
   &:hover {
     cursor: pointer;
+    background-color: #2c7a7b;
+    transform: scale(1.003);
   }
+  
+}
+
+.cancel {
+  background-color: #c51818;
+
+  &:hover {
+    background-color: #ac1212;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.modal > * {
+  margin: 0.5rem;
+}
+
+.alert {
+  color: crimson;
+}
+
+.success-input {
+  display: flex;
+}
+
+.key-field {
+  width: 100%;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-message {
+  margin: 1rem;
+  text-align: center;
 }
 
 .wallet {
@@ -84,3 +161,30 @@ input {
   display: flex;
   flex-direction: column;
 }
+
+.address-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.address-table th,
+.address-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.address-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.address-text {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.address-text:hover {
+  color: #5caaf3;
+}
+

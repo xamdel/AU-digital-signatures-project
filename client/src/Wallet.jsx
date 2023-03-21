@@ -1,17 +1,10 @@
-import server from "./server";
 
-function Wallet({ address, setAddress, balance, setBalance }) {
-  async function onChange(evt) {
-    const address = evt.target.value;
-    setAddress(address);
-    if (address) {
-      const {
-        data: { balance },
-      } = await server.get(`balance/${address}`);
-      setBalance(balance);
-    } else {
-      setBalance(0);
-    }
+export default function Wallet({ address, setAddress, setLoggedIn, setLoggedInPrivateKey, balance, setBalance }) {
+
+  function handleLogOut() {
+    setAddress("");
+    setLoggedInPrivateKey("");
+    setLoggedIn(false);
   }
 
   return (
@@ -20,12 +13,11 @@ function Wallet({ address, setAddress, balance, setBalance }) {
 
       <label>
         Wallet Address
-        <input placeholder="Type an address, for example: 0x1" value={address} onChange={onChange}></input>
+        <input disabled value={address}></input>
       </label>
 
       <div className="balance">Balance: {balance}</div>
+      <button className="button cancel" onClick={handleLogOut}>Log Out</button>
     </div>
   );
 }
-
-export default Wallet;
